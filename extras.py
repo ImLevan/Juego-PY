@@ -91,7 +91,8 @@ def dameLetraApretada(key):
 def main(segundos_menu):
 
         #Musica
-        musica_fondo=pygame.mixer.music.load(".\\sonidos\\musica-fondo.mp3")
+        musica_fondo_path = os.path.join("sonidos", "musica-fondo.mp3")
+        musica_fondo=pygame.mixer.music.load(musica_fondo_path)
         musica_fondo=pygame.mixer.music.play(-1)
         musica_fondo=pygame.mixer.music.set_volume(0.3)
         #Centrar la ventana y despues inicializar pygame
@@ -102,12 +103,16 @@ def main(segundos_menu):
         pygame.display.set_caption("Cancionero...")
         screen = pygame.display.set_mode((ANCHO, ALTO))
         #definimos funciones
-        sonido_correc=pygame.mixer.Sound(".\\sonidos\\correcta.ogg")
+        sonido_correc_path = os.path.join("sonidos", "correcta.ogg")
+        sonido_correc=pygame.mixer.Sound(sonido_correc_path)
 
-        sonido_bonus=pygame.mixer.Sound(".\\sonidos\\bonus.ogg")
+        sonido_bonus_path = os.path.join("sonidos", "bonus.ogg")
+        sonido_bonus=pygame.mixer.Sound(sonido_bonus_path)
 
-        sonido_error=pygame.mixer.Sound(".\\sonidos\\error.ogg")
-        fondo=pygame.image.load(".\\imagenes\\render.jpg").convert()
+        sonido_error_path = os.path.join("sonidos", "Error.ogg")
+        sonido_error=pygame.mixer.Sound(sonido_error_path)
+        fondo_path = os.path.join("imagenes", "render.jpg")
+        fondo = pygame.image.load(fondo_path).convert()
         screen.blit(fondo,[0,0])
         
         #tiempo total del juego
@@ -127,7 +132,9 @@ def main(segundos_menu):
         #elige una cancion de todas las disponibles
         azar=random.randrange(1,N+1)
         elegidos.append(azar) #la agrega a la lista de los ya elegidos
-        archivo= open(".\\letras\\"+str(azar)+".txt","r", encoding='utf-8') # abre el archivo elegido con unicode.
+        
+        archivo_path = os.path.join("letras", str(azar) + ".txt")
+        archivo = open(archivo_path, "r", encoding='utf-8') # abre el archivo elegido con unicode.
 
 
         #lectura del archivo y filtrado de caracteres especiales, la primer linea es el artista y ca
@@ -198,7 +205,8 @@ def main(segundos_menu):
 
 
 
-                        archivo= open(".\\letras\\"+str(azar)+".txt","r", encoding='utf-8')
+                        archivo_path = os.path.join("letras", str(azar) + ".txt")
+                        archivo = open(archivo_path, "r", encoding='utf-8')
                         palabraUsuario = ""
                         #lectura del archivo y filtrado de caracteres especiales
                         artistaYcancion=[]
@@ -233,7 +241,8 @@ def main(segundos_menu):
         archivo.close()
 
 def dibujar(screen, palabraUsuario, lista, puntos, segundos, ayuda):
-    fondo=pygame.image.load(".\\imagenes\\render.jpg").convert()
+    fondo_path = os.path.join("imagenes", "render.jpg")
+    fondo = pygame.image.load(fondo_path).convert()
     screen.blit(fondo,[0,0])
 
     defaultFont= pygame.font.Font( pygame.font.get_default_font(), TAMANNO_LETRA)
@@ -277,7 +286,8 @@ def menu():
     segundos_menu=0
     segundos=0
     fuente=pygame.font.SysFont("",50)
-    fondo=pygame.image.load(".\\imagenes\\render.jpg").convert()
+    fondo_path = os.path.join("imagenes", "render.jpg")
+    fondo = pygame.image.load(fondo_path).convert()
     texto1=fuente.render("JUGAR",True,(249, 231, 159))
     texto2=fuente.render("REGLAS",True,(249, 231, 159))
     texto3=pygame.font.Font( pygame.font.get_default_font(), TAMANNO_LETRA).render("Bienvenido al CANCIONERO",1,COLOR_TEXTO)
@@ -316,7 +326,8 @@ def menu():
             if event.type == MOUSEBUTTONDOWN:
                 if event.button==1:
                     click=True
-        fondo=pygame.image.load(".\\imagenes\\render.jpg").convert()
+        fondo_path = os.path.join("imagenes", "render.jpg")
+        fondo = pygame.image.load(fondo_path).convert()
         screen.blit(fondo,[0,0])
         screen.blit(texto1,(450,170))
         screen.blit(texto2,(440,270))
@@ -357,7 +368,8 @@ def reglas():
                     click=True       
 
 
-        fondo=pygame.image.load(".\\imagenes\\rule.png").convert()
+        fondo_path = os.path.join("imagenes", "rule.png")
+        fondo = pygame.image.load(fondo_path).convert()
         screen.blit(fondo,[0,0])
         screen.blit(texto5,(10,10))
         pygame.display.update()
@@ -366,7 +378,8 @@ def reglas():
 def finalScene(puntos):
     fuente=pygame.font.SysFont("",50)
     font=pygame.font.SysFont(None,20)
-    musica_fondo=pygame.mixer.music.load(".\\sonidos\\gameover.mp3")
+    musica_fondo_path = os.path.join("sonidos", "gameover.mp3")
+    musica_fondo=pygame.mixer.music.load(musica_fondo_path)
     musica_fondo=pygame.mixer.music.play(1)
     musica_fondo=pygame.mixer.music.set_volume(0.3)
     defaultFont= pygame.font.Font( pygame.font.get_default_font(), TAMANNO_LETRA)
@@ -388,7 +401,8 @@ def finalScene(puntos):
                 main(segundos_menu)
         if button_7.collidepoint((mx,my)):
             if click:
-                musica_fondo=pygame.mixer.music.load(".\\sonidos\\musica-fondo.mp3")
+                musica_fondo_path = os.path.join("sonidos", "musica-fondo.mp3")
+                musica_fondo=pygame.mixer.music.load(musica_fondo_path)
                 musica_fondo=pygame.mixer.music.play(-1)
                 musica_fondo=pygame.mixer.music.set_volume(0.3)
                 menu()
@@ -406,7 +420,8 @@ def finalScene(puntos):
                 if event.button==1:
                     click=True       
 
-        fondo=pygame.image.load(".\\imagenes\\final.jpg").convert()
+        fondo_path = os.path.join("imagenes", "render.jpg")
+        fondo = pygame.image.load(fondo_path).convert()
         screen.blit(fondo,[0,0])
         screen.blit(texto6,(378,10))
         screen.blit(defaultFont.render("JUGAR DE NUEVO?", 1, (255,255,255)), (420,380))

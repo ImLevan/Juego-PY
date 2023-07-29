@@ -9,7 +9,8 @@ pygame.init()
 pygame.display.set_caption("game base")
 screen=pygame.display.set_mode((1024,600),0,32)
 
-musica_fondo=pygame.mixer.music.load(".\\sonidos\\musica-fondo.mp3")
+musica_fondo_path = os.path.join("sonidos", "musica-fondo.mp3")
+musica_fondo=pygame.mixer.music.load(musica_fondo_path)
 musica_fondo=pygame.mixer.music.play(-1)
 musica_fondo=pygame.mixer.music.set_volume(0.3)
 
@@ -18,7 +19,8 @@ musica_fondo=pygame.mixer.music.set_volume(0.3)
 def main(segundos_menu):
 
         #Musica
-        musica_fondo=pygame.mixer.music.load(".\\sonidos\\musica-fondo.mp3")
+        musica_fondo_path = os.path.join("sonidos", "musica-fondo.mp3")
+        musica_fondo=pygame.mixer.music.load(musica_fondo_path)
         musica_fondo=pygame.mixer.music.play(-1)
         musica_fondo=pygame.mixer.music.set_volume(0.3)
         #Centrar la ventana y despues inicializar pygame
@@ -29,11 +31,14 @@ def main(segundos_menu):
         pygame.display.set_caption("Cancionero...")
         screen = pygame.display.set_mode((ANCHO, ALTO))
         #definimos funciones
-        sonido_correc=pygame.mixer.Sound(".\\sonidos\\correcta.ogg")
+        sonido_correc_path = os.path.join("sonidos", "correcta.ogg")
+        sonido_correc=pygame.mixer.Sound(sonido_correc_path)
 
-        sonido_bonus=pygame.mixer.Sound(".\\sonidos\\bonus.ogg")
+        sonido_bonus_path = os.path.join("sonidos", "bonus.ogg")
+        sonido_bonus=pygame.mixer.Sound(sonido_bonus_path)
 
-        sonido_error=pygame.mixer.Sound(".\\sonidos\\error.ogg")
+        sonido_error_path = os.path.join("sonidos", "Error.ogg")
+        sonido_error=pygame.mixer.Sound(sonido_error_path)
         fondo=pygame.image.load("render.jpg").convert()
         screen.blit(fondo,[0,0])
         
@@ -125,7 +130,8 @@ def main(segundos_menu):
 
 
 
-                        archivo= open(".\\letras\\"+str(azar)+".txt","r", encoding='utf-8')
+                        archivo_path = os.path.join("letras", str(azar) + ".txt")
+                        archivo = open(archivo_path, "r", encoding='utf-8')
                         palabraUsuario = ""
                         #lectura del archivo y filtrado de caracteres especiales
                         artistaYcancion=[]
