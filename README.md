@@ -41,7 +41,6 @@ El juego presenta un cronómetro y un límite de canciones para adivinar. Cada v
 ## Capturas de pantalla
 
 ![Captura 1](imagenes/juego.png)
-![Captura 2](ruta/a/la/captura2.png)
 
 ## Créditos
 
